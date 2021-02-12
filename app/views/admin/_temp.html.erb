@@ -1,0 +1,7 @@
+<%= form_with url: "/menu_items/#{menu_item.id}", method: :delete do |form|%>
+  <%= form.submit :Delete %>
+<% end %>
+<%= form_with url:"/menus", method: "post" do |form| %>
+  <%= form.text_field :name, placeholder: "Name" %>
+  <%= form.submit :Add %>
+<% end %>

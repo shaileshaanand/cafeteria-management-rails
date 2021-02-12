@@ -1,0 +1,37 @@
+<div class="UserTable">
+  <h3 class="UserTable--TableTitle">
+    <%= heading %>
+  </h3>
+  <div class="UserTable--TableContainer">
+    <table class="UserTable--Table" width="100%">
+      <thead class="UserTable--TableHeader">
+        <tr>
+          <th class="UserTable--Cell__ul">First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th class="UserTable--Cell__ur">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.each do |user| %>
+          <tr>
+            <td align="center">
+              <%= user.first_name %>
+            </td>
+            <td align="center">
+              <%= user.last_name %>
+            </td>
+            <td align="center">
+              <%= user.email %>
+            </td>
+            <td align="center">
+              <%= form_with url: "/users/#{user.id}", method: :delete do |form| %>
+                <%= form.submit :Delete, class: "Button Button__primary" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

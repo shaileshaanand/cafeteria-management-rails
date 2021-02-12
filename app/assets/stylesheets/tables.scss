@@ -1,0 +1,116 @@
+@import "colors.scss";
+$radius: 7px;
+.UserTable {
+  margin-bottom: 20px;
+  &--TableTitle {
+    font-size: 2.5rem;
+    font-weight: 600;
+    width: 100%;
+    padding: 10px 25px;
+    color: $text-color;
+    background-color: $secondary-color;
+    border-radius: $radius $radius 0 0;
+  }
+  &--Table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    // border: 1px solid red;
+  }
+  &--TableContainer {
+    padding: 17px;
+    background-color: $bg-color;
+    border-radius: 0 0 $radius $radius;
+    tr > * {
+      font-size: 2rem;
+      color: $text-color;
+      padding: 10px;
+      border: 2px solid $text-color;
+    }
+  }
+  &--Cell {
+    &__ul {
+      border-radius: 10px;
+    }
+  }
+}
+
+.AdminMenu {
+  margin: 30px 0;
+  background-color: $bg-color;
+  border-radius: $radius $radius 0 0;
+  &--Title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    width: 100%;
+    padding: 10px 25px;
+    color: $text-color;
+    background-color: $secondary-color;
+    border-radius: $radius $radius 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &--Content {
+    padding: 14px 17px;
+  }
+  &--Form {
+    color: $text-color;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 7px;
+  }
+  &--FormGroup {
+    display: flex;
+    margin-bottom: 10px;
+    &__bottom {
+      justify-content: space-between;
+      input {
+        flex-grow: unset !important;
+      }
+      input[type="file"] {
+        justify-self: center;
+      }
+    }
+    input {
+      flex-grow: 1;
+      background-color: $bg-color;
+      color: $text-color;
+      padding: 10px;
+      font-size: 2rem;
+      border-radius: $radius;
+      outline: 0;
+      border: 2px solid $text-color;
+      &:focus {
+        border: 2px solid $secondary-color;
+      }
+    }
+    input + input {
+      // flex-grow: 1;
+      margin-left: 12px;
+    }
+    .Button {
+      border: 0;
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+  }
+  &--Input {
+    font-size: 2rem;
+  }
+  &--File {
+    font-size: 30px;
+  }
+  &--ItemsTable {
+    border-collapse: collapse;
+    border-spacing: 0;
+    th,
+    td {
+      font-size: 2rem;
+      color: $text-color;
+      padding: 10px;
+      border: 2px solid $text-color;
+      vertical-align: middle;
+      text-align: center;
+    }
+  }
+}

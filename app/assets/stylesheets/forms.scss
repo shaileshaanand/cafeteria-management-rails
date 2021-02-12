@@ -1,0 +1,98 @@
+@import "colors.scss";
+$radius: 7px;
+.AddUserForm {
+  border-radius: 7px;
+  background-color: $bg-color;
+  margin: 20px auto;
+  &--Title {
+    margin-top: 30px;
+    font-size: 2.5rem;
+    font-weight: 600;
+    width: 100%;
+    padding: 10px 25px;
+    color: $text-color;
+    background-color: $secondary-color;
+    border-radius: $radius $radius 0px 0px;
+  }
+  &--Name {
+    display: flex;
+  }
+  &--Form {
+    padding: 10px;
+  }
+  &--Rest {
+    display: flex;
+    flex-direction: column;
+  }
+  &--Input {
+    // width: 1fr;
+    flex-grow: 1;
+    display: block;
+    margin: 7px;
+    background-color: $bg-color;
+    color: $text-color;
+    padding: 10px;
+    font-size: 2rem;
+    border-radius: $radius;
+    outline: 0;
+    border: 2px solid $text-color;
+    &:focus {
+      border: 2px solid $secondary-color;
+    }
+  }
+  select {
+    flex-grow: 0;
+    width: 200px;
+  }
+  &--Bottom {
+    display: flex;
+    justify-content: space-between;
+  }
+  .Button {
+    padding: 10px 20px;
+    margin: 7px;
+  }
+}
+
+.NewMenuForm {
+  background-color: $bg-color;
+  border-radius: $radius;
+  &--Title {
+    margin-top: 30px;
+    font-size: 2.5rem;
+    font-weight: 600;
+    width: 100%;
+    padding: 10px 25px;
+    color: $text-color;
+    background-color: $secondary-color;
+    border-radius: $radius $radius 0px 0px;
+  }
+  &--Form {
+    display: flex;
+    // align-items: center;
+    justify-content: stretch;
+    padding: 10px;
+  }
+  &--Input {
+    width: 300px;
+    margin-right: 10px;
+    display: block;
+    margin: 7px;
+    background-color: $bg-color;
+    color: $text-color;
+    padding: 10px;
+    font-size: 2rem;
+    border-radius: $radius;
+    outline: 0;
+    border: 2px solid $text-color;
+    &:focus {
+      border: 2px solid $secondary-color;
+    }
+  }
+  .Button {
+    align-self: center;
+    height: 50px;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}

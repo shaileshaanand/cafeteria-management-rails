@@ -1,0 +1,33 @@
+<div class="AddUserForm">
+  <h3 class="AddUserForm--Title">Add User</h3>
+  <%= form_with url: "/users", method: :post, class: "AddUserForm--Form" do |form| %>
+    <div class="AddUserForm--Name">
+      <%= form.text_field :first_name, placeholder: "First Name", class:"AddUserForm--Input" %>
+      <%= form.text_field :last_name, placeholder: "Last Name", class:"AddUserForm--Input" %>
+    </div>
+    <div class="AddUserForm--Rest">
+      <%= form.email_field :email, placeholder: "Email", class:"AddUserForm--Input" %>
+      <%= form.password_field :password, placeholder: "Password", class:"AddUserForm--Input" %>
+    </div>
+    <div class="AddUserForm--Bottom">
+      <select name="role" id="role" class="AddUserForm--Input">
+        <option value="Clerk">Clerk</option>
+        <option value="Owner">Owner</option>
+        <option value="Customer">Customer</option>
+      </select>
+      <%= form.submit :Add, class: "Button Button__primary" %>
+    </div>
+  <% end %>
+</div>
+<%= render partial: "admin/user_table",locals: {
+  users:User.clerks,
+  heading: "Clerks"
+} %>
+<%= render partial: "admin/user_table",locals: {
+  users:User.owners,
+  heading: "Owners"
+} %>
+<%= render partial: "admin/user_table",locals: {
+  users:User.customers,
+  heading: "Customers"
+} %>

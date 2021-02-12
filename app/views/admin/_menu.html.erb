@@ -1,0 +1,54 @@
+<div class="AdminMenu">
+  <div class="AdminMenu--Title">
+    <%= menu.name %>
+    <div>
+      <%= form_with url: "/menus/#{menu.id}", method: :delete do |form|%>
+        <%= form.submit :Delete, class:"Button Button__primary" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="AdminMenu--Content">
+    <%= form_with url: "/menu_items", method: "post",class:"AdminMenu--Form" do |form| %>
+      <div class="AdminMenu--FormGroup">
+        <%= form.text_field :name, placeholder: "Name", class:"AdminMenu--Input" %>
+        <%= form.text_field :price, placeholder: "Price", class:"AdminMenu--Input" %>
+        <%= form.text_field :description, placeholder: "Description", class:"AdminMenu--Input" %>
+      </div>
+      <div class="AdminMenu--FormGroup AdminMenu--FormGroup__bottom">
+        <%= form.file_field :picture, direct_upload: true, class:"AdminMenu--Input" %>
+        <%= hidden_field_tag("menu_id",menu.id) %>
+        <%= form.submit :Add,class:"Button Button__primary" %>
+      </div>
+    <% end %>
+    <table class="AdminMenu--ItemsTable" width="100%">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Image</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% menu.menu_items.each do |menu_item| %>
+          <tr>
+            <td><%= menu_item.name %> </td>
+            <td><%= menu_item.price %> </td>
+            <td>
+              <%# <%= image_tag(cloudinary_url(menu_item.image.key, options = {width:300,crop: :scale})) %>
+              <%# <%= image_tag menu_item.image.variant(:thumb) %>
+              image
+            </td>
+            <td><%= menu_item.description %> </td>
+            <td>
+              <%= form_with url: "/menu_items/#{menu_item.id}", method: :delete do |form|%>
+                <%= form.submit :Delete, class: "Button Button__primary" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

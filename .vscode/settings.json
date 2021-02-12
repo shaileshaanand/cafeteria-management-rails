@@ -1,0 +1,8 @@
+{
+    "editor.tabSize": 2,
+    "prettier.tabWidth": 2,
+    "ruby.format": "rufo",
+    "ruby.useLanguageServer": true,
+    "files.associations": {
+    }
+}

@@ -1,0 +1,45 @@
+@import "colors.scss";
+$navbar_height: 4.5rem;
+.Navbar {
+  height: $navbar_height;
+  background-color: $bg-color;
+  color: $text-color;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  &--Branding {
+    font-size: 2.5rem;
+    padding: 1rem;
+  }
+  & > div {
+    height: 100%;
+    display: flex;
+  }
+  &--Menu {
+    height: 100%;
+    font-size: 2rem;
+    line-height: $navbar_height;
+    display: flex;
+    align-items: center;
+  }
+  &--MenuItem {
+    a {
+      padding: 0 1rem;
+      display: block;
+      transition: all 0.25s ease-in-out;
+      &:hover {
+        background-color: $primary-color;
+      }
+    }
+    &__Username {
+      padding: 0 1rem;
+      &:hover {
+        background-color: #252323;
+      }
+    }
+  }
+  .Button {
+    margin-right: 15px;
+  }
+}

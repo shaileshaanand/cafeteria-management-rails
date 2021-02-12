@@ -1,0 +1,24 @@
+<div class="ActiveMenu">
+  <div class="ActiveMenu--Wrapper">
+    <p class="ActiveMenu--Label">
+      Active Menu:
+    </p>
+    <select name="menu" id="menu">
+      <option value="Breakfast">Breakfast</option>
+      <option value="Lunch">Lunch</option>
+      <option value="Dinner">Dinner</option>
+    </select>
+  </div>
+</div>
+<div class="NewMenuForm">
+  <h3 class="NewMenuForm--Title">New Menu:</h3>
+  <%= form_with url:"/menus", method: "post", class:"NewMenuForm--Form" do |form| %>
+    <%= form.text_field :name, placeholder: "Name",class:"NewMenuForm--Input" %>
+    <%= form.submit :Add, class: "Button Button__primary" %>
+  <% end %>
+</div>
+<% Menu.all.each do |menu| %>
+  <%= render partial: "admin/menu", locals: {
+    menu: menu
+  } %>
+<% end %>
