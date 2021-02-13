@@ -1,6 +1,14 @@
 <div class="AdminMenu">
   <div class="AdminMenu--Title">
-    <%= menu.name %>
+    <div class="AdminMenu--Name">
+      <%= menu.name %>
+      <% if not menu.active? %>
+        <%= form_with url: set_active_menu_path, method: :post do |form| %>
+          <%=  form.hidden_field :menu_id, value: menu.id %>
+          <%= form.submit :Activate, class:"Button Button__primary" %>
+        <% end %>
+      <% end %>
+    </div>
     <div>
       <%= form_with url: "/menus/#{menu.id}", method: :delete do |form|%>
         <%= form.submit :Delete, class:"Button Button__primary" %>

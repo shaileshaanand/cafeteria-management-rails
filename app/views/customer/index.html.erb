@@ -1,0 +1,49 @@
+<div class="CustomerUpper">
+  <div class="CustomerActiveMenu">
+    <p class="CustomerActiveMenu--Label">Active Menu:</p>
+    <p class="CustomerActiveMenu--MenuName"><%= @active_menu.name %> </p>
+  </div>
+  <div class="CustomerCart">
+    <p class="CustomerCart--Label">Cart:</p>
+    <p class="CustomerCart--Number">25</p>
+    <p class="CustomerCart--Amount">350</p>
+  </div>
+</div>
+<div class="CustomerMenu">
+  <p class="CustomerMenu--Header"><%= @active_menu.name %></p>
+  <div class="CustomerMenu--TableContainer">
+    <table class="CustomerMenu--Table" width="100%">
+      <tbody>
+        <% @active_menu.menu_items.each do |menu_item| %>
+          <tr>
+            <td><%= menu_item.name %> </td>
+            <td class="CustomerMenu--Price"><%= menu_item.price %> </td>
+            <td>image</td>
+            <td><%= menu_item.description %> </td>
+            <td>
+              <div class="AddToCart">
+                <div class="AddToCart--Container">
+                  <div class="AddToCart--Upper">
+                    <button class="AddToCart--Minus" onclick="decrease(<%=menu_item.id%>)">-</button>
+                    <div id="cart_<%=menu_item.id%>" class="AddToCart--Number">2</div>
+                    <button class="AddToCart--Plus" onclick="increase(<%=menu_item.id%>)">+</button>
+                  </div>
+                  <button class="AddToCart--Button">Add</button>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script type="text/javascript">
+  function decrease(menu_item_id) {
+    element=document.getElementById("cart_"+menu_item_id);
+    element.innerHTML=Math.max(0,element.innerHTML-1)
+  }
+  function increase(menu_item_id) {
+    document.getElementById("cart_"+menu_item_id).innerHTML++;
+  }
+</script>

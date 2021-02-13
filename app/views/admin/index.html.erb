@@ -3,11 +3,13 @@
     <p class="ActiveMenu--Label">
       Active Menu:
     </p>
-    <select name="menu" id="menu">
-      <option value="Breakfast">Breakfast</option>
-      <option value="Lunch">Lunch</option>
-      <option value="Dinner">Dinner</option>
-    </select>
+    <%= form_with url: set_active_menu_path, method: :post do |form|%>
+      <select name="menu_id" id="menu_id">
+        <%= @menus.each do |menu| %>
+          <option value="<%= menu.id %>" onclick="this.form.submit()" <%= menu.active? ? "selected":"" %> ><%= menu.name %> </option>
+        <% end %>
+      </select>
+    <% end %>
   </div>
 </div>
 <div class="NewMenuForm">
