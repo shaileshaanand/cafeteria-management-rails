@@ -22,14 +22,18 @@
             <td><%= menu_item.description %> </td>
             <td>
               <div class="AddToCart">
-                <div class="AddToCart--Container">
-                  <div class="AddToCart--Upper">
-                    <button class="AddToCart--Minus" onclick="decrease(<%=menu_item.id%>)">-</button>
-                    <div id="cart_<%=menu_item.id%>" class="AddToCart--Number">2</div>
-                    <button class="AddToCart--Plus" onclick="increase(<%=menu_item.id%>)">+</button>
+                <%= form_with url: add_to_cart_path, method: :post do |form| %>
+                  <%= form.hidden_field :user_id, value: "1" %>
+                  <div class="AddToCart--Container">
+                    <div class="AddToCart--Upper">
+                      <button type="button" class="AddToCart--Minus" onclick="decrease(<%=menu_item.id%>)">-</button>
+                      <input name ="amount" id="cart_<%=menu_item.id%>" class="AddToCart--Number" readonly autocomplete="off" value="1">
+                      <button type="button" class="AddToCart--Plus" onclick="increase(<%=menu_item.id%>)">+</button>
+                    </div>
+                    <%= form.hidden_field :menu_item_id, value: menu_item.id %>
+                    <%= form.submit :Add, class:"AddToCart--Button" %>
                   </div>
-                  <button class="AddToCart--Button">Add</button>
-                </div>
+                <% end %>
               </div>
             </td>
           </tr>
@@ -41,9 +45,9 @@
 <script type="text/javascript">
   function decrease(menu_item_id) {
     element=document.getElementById("cart_"+menu_item_id);
-    element.innerHTML=Math.max(0,element.innerHTML-1)
+    element.value=Math.max(1,element.value-1)
   }
   function increase(menu_item_id) {
-    document.getElementById("cart_"+menu_item_id).innerHTML++;
+    document.getElementById("cart_"+menu_item_id).value++;
   }
 </script>

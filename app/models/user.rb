@@ -4,6 +4,7 @@ class User < ApplicationRecord
   validates :role, presence: true
   has_secure_password
   has_many :orders
+  has_many :cart_items
   def self.customers
     User.where(role: "customer")
   end

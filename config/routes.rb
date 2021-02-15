@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "/admin/users" => "admin#users", as: :admin_users
   get "/customer" => "customer#index", as: :customer_home
   post "/set_active_menu" => "configs#set_active_menu", as: :set_active_menu
+  post "/customer/add_to_cart" => "cart_items#add", as: :add_to_cart
   resources :users
   resources :menus
   resources :menu_items
