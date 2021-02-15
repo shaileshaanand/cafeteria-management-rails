@@ -11,6 +11,9 @@ class Config < ApplicationRecord
   end
 
   def self.active_menu_id
-    all.find_by(key: "active_menu").value.to_i
+    if all.exists?(key: "active_menu")
+      return all.find_by(key: "active_menu").value.to_i
+    end
+    nil
   end
 end
