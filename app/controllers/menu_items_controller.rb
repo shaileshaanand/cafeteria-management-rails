@@ -6,6 +6,7 @@ class MenuItemsController < ApplicationController
       menu_id: params[:menu_id],
       description: params[:description],
     )
+    new_item.picture.attach(params[:picture])
     if not new_item.save()
       flash[:error] = new_item.errors.full_messages.join(", ")
     end

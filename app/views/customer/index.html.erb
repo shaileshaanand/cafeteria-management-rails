@@ -18,7 +18,9 @@
           <tr>
             <td><%= menu_item.name %> </td>
             <td class="CustomerMenu--Price"><%= menu_item.price %> </td>
-            <td>image</td>
+            <td>
+              <%= image_tag(cloudinary_url(menu_item.picture.key, options = {width:230, height: 153,crop: :fill})) %>
+            </td>
             <td><%= menu_item.description %> </td>
             <td>
               <div class="AddToCart">

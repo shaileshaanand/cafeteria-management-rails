@@ -44,9 +44,7 @@
             <td><%= menu_item.name %> </td>
             <td><%= menu_item.price %> </td>
             <td>
-              <%# <%= image_tag(cloudinary_url(menu_item.image.key, options = {width:300,crop: :scale})) %>
-              <%# <%= image_tag menu_item.image.variant(:thumb) %>
-              image
+              <%= image_tag(cloudinary_url(menu_item.picture.key, options = {width:230, height: 153,crop: :fill})) %>
             </td>
             <td><%= menu_item.description %> </td>
             <td>
