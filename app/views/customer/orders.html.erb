@@ -1,0 +1,21 @@
+<h1>orders</h1>
+<div>
+  <p>My Orders</p>
+  <table>
+    <tbody>
+      <% User.find(1).orders.each do |order| %>
+        <tr>
+          <td>
+            <%= order.date %>
+          </td>
+          <td>
+            <%= order.amount %>
+          </td>
+          <td>
+            <%= order.status %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

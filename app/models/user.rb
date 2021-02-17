@@ -14,4 +14,18 @@ class User < ApplicationRecord
   def self.owners
     User.where(role: "owner")
   end
+
+  def cart_items_count
+    cart_items.map { |cart_item|
+      cart_item.amount
+    }
+      .reduce(0, :+)
+  end
+
+  def cart_total
+    cart_items.map { |cart_item|
+      cart_item.amount * cart_item.menu_item.price
+    }
+      .reduce(0, :+)
+  end
 end

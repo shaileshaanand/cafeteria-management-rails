@@ -1,0 +1,37 @@
+<div>
+  <p></p>
+  <div>
+    <table>
+      <tbody>
+        <% User.find(1).cart_items.each do |cart_item| %>
+          <tr>
+            <td>
+              <%= cart_item.menu_item.name %>
+            </td>
+            <td>
+              <%= image_tag(cloudinary_url(cart_item.menu_item.picture.key, options = {width:230, height: 153,crop: :fill})) %>
+            </td>
+            <td>
+              <%= cart_item.amount %>
+            </td>
+            <td>
+              <%= cart_item.cost %>
+            </td>
+            <td>
+              <%= form_with url: "/cart_items/#{cart_item.id}", method: :patch do |form| %>
+                <input type="text" name="amount">
+                <input type="submit" value="change">
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div>
+      <%= form_with url:"/orders", method: :post do |form| %>
+        <%= form.hidden_field :user_id, value:1 %>
+        <%= form.submit "Place Order" %>
+      <% end %>
+    </div>
+  </div>
+</div>

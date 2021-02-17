@@ -3,9 +3,13 @@ Rails.application.routes.draw do
   get "/admin" => "admin#index", as: :admin_home
   get "/admin/users" => "admin#users", as: :admin_users
   get "/customer" => "customer#index", as: :customer_home
+  get "/customer/cart" => "customer#cart", as: :customer_cart
+  get "/customer/orders" => "customer#orders", as: :customer_orders
   post "/set_active_menu" => "configs#set_active_menu", as: :set_active_menu
   post "/customer/add_to_cart" => "cart_items#add", as: :add_to_cart
   resources :users
   resources :menus
   resources :menu_items
+  resources :cart_items
+  resources :orders
 end

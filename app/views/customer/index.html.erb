@@ -4,9 +4,8 @@
     <p class="CustomerActiveMenu--MenuName"><%= @active_menu.name %> </p>
   </div>
   <div class="CustomerCart">
-    <p class="CustomerCart--Label">Cart:</p>
-    <p class="CustomerCart--Number">25</p>
-    <p class="CustomerCart--Amount">350</p>
+    <p class="CustomerCart--Label">Cart : <%= User.find(1).cart_items_count %> </p>
+    <%= link_to "Checkout", customer_cart_path, class: "Button Button__primary" %>
   </div>
 </div>
 <div class="CustomerMenu">
