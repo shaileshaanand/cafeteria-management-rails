@@ -216,3 +216,29 @@ $radius: 7px;
     padding: 10px 16px;
   }
 }
+
+.OrdersTable {
+  margin-top: 30px;
+  &--Title {
+    background-color: $secondary-color;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: $text-color;
+    padding: 10px 25px;
+    border-radius: $radius $radius 0 0;
+  }
+  &--Container {
+    padding: 14px 17px;
+    background-color: $bg-color;
+    border-radius: 0 0 $radius $radius;
+  }
+  td,
+  th {
+    border: 2px solid $text-color;
+    padding: 10px;
+    font-size: 2rem;
+    vertical-align: middle;
+    text-align: center;
+    color: $text-color;
+  }
+}

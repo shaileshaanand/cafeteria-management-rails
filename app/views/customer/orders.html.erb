@@ -1,21 +1,43 @@
-<h1>orders</h1>
-<div>
-  <p>My Orders</p>
-  <table>
-    <tbody>
-      <% User.find(1).orders.each do |order| %>
-        <tr>
-          <td>
-            <%= order.date %>
-          </td>
-          <td>
-            <%= order.amount %>
-          </td>
-          <td>
-            <%= order.status %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class="OrdersTable" >
+  <p class="OrdersTable--Title" >My Orders</p>
+  <div class="OrdersTable--Container">
+    <table class="OrdersTable--Table" width="100%">
+      <thead>
+        <th>
+          Order ID
+        </th>
+        <th>
+          Date
+        </th>
+        <th>
+          Total
+        </th>
+        <th>
+          Status
+        </th>
+      </thead>
+      <tbody>
+        <% User.find(1).orders.each do |order| %>
+          <tr>
+            <td>
+              <%= order.id %>
+            </td>
+            <td>
+              <%= order.date.strftime("%d %b %Y") %>
+            </td>
+            <td>
+              ₹<%= order.amount %>
+            </td>
+            <td>
+              <% if order.status %>
+                Delivered
+              <% else %>
+                Pending
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
