@@ -15,7 +15,11 @@ class CartItemsController < ApplicationController
         flash[:error] = new_cart_item.errors.full_messages.join(", ")
       end
     end
-    redirect_to "/customer"
+    if params[:source] == "clerk"
+      redirect_to "/clerk"
+    else
+      redirect_to "/customer"
+    end
   end
 
   def update
@@ -29,6 +33,10 @@ class CartItemsController < ApplicationController
 
   def destroy
     CartItem.find(params[:id]).destroy
-    redirect_to "/customer/cart"
+    if params[:source] == "clerk"
+      redirect_to "/clerk"
+    else
+      redirect_to "/customer/cart"
+    end
   end
 end

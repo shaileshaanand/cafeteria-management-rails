@@ -28,4 +28,8 @@ class User < ApplicationRecord
     }
       .reduce(0, :+)
   end
+
+  def self.walk_in_customer
+    all.find(Config.walk_in_customer_id)
+  end
 end

@@ -6,10 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create!(
-  first_name: "Shailesh",
-  last_name: "Aanand",
+walk_in_customer = User.create!(
+  first_name: "Walk In",
+  last_name: "Customer",
   password: "1234",
-  email: "anaandshailu@gmail.com",
-  role: "Customer",
+  email: "walkin@example.com",
+  role: "customer",
 )
+
+Config.set_walk_in_customer(walk_in_customer.id)

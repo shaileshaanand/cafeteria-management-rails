@@ -13,12 +13,22 @@ class OrdersController < ApplicationController
         OrderItem.create(
           order_id: new_order.id,
           menu_item_id: cart_item.menu_item.id,
+          amount: cart_item.amount,
         )
       }
       User.find(params[:user_id]).cart_items.delete_all
     else
       flash[:error] = new_order.errors.full_messages.join(", ")
     end
-    redirect_to "/customer/orders"
+    if params[:source] == "clerk"
+      redirect_to "/clerk"
+    else
+      redirect_to "/customer/orders"
+    end
+  end
+
+  def deliver
+    Order.find(params[:order_id]).update({ :status => true })
+    redirect_to "/clerk"
   end
 end

@@ -16,4 +16,12 @@ class Config < ApplicationRecord
     end
     nil
   end
+
+  def self.set_walk_in_customer(user_id)
+    Config.create!(key: "walk_in_customer_id", value: user_id)
+  end
+
+  def self.walk_in_customer_id
+    all.find_by(key: "walk_in_customer_id").value.to_i
+  end
 end
