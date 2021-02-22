@@ -44,6 +44,10 @@ $radius: 7px;
     background-color: $bg-color;
     border-radius: $radius 0 0 $radius;
   }
+  & > *:last-child {
+    border-top-right-radius: $radius;
+    border-bottom-right-radius: $radius;
+  }
   // &--Number {
   //   background-color: $primary-color;
   // }
@@ -131,5 +135,84 @@ $radius: 7px;
     color: $text-color;
     border-radius: 0 0 $radius $radius;
     font-weight: 600;
+  }
+}
+
+.CartTable {
+  margin-top: 30px;
+  &--Header {
+    font-size: 2.5rem;
+    font-weight: 600;
+    background-color: $secondary-color;
+    color: $text-color;
+    padding: 10px 25px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: $radius $radius 0 0;
+  }
+  &--TableContainer {
+    padding: 17px;
+    display: flex;
+    flex-direction: column;
+    background-color: $bg-color;
+    color: $text-color;
+    border-radius: 0 0 $radius $radius;
+    margin-bottom: 30px;
+  }
+  &--FormContainer {
+    display: flex;
+    // align-items: center;
+    justify-content: center;
+  }
+  &--Table {
+    border-collapse: collapse;
+    padding: 12px;
+    margin-bottom: 10px;
+    td,
+    th {
+      border: 2px solid $text-color;
+      padding: 12px;
+      text-align: center;
+      vertical-align: middle;
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100px;
+        input[type="text"] {
+          background: $bg-color;
+          color: $text-color;
+          width: inherit;
+          text-align: center;
+          // flex-grow: 1;
+          // font-size: 2rem;
+          padding: 7px 0;
+          border: 2px solid $primary-color;
+          border-bottom: 0;
+          border-radius: $radius $radius 0 0;
+          outline: 0;
+        }
+        .ChangeButton {
+          width: inherit;
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+        }
+      }
+    }
+  }
+  &--PlaceOrderForm {
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    .Button {
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        background-color: $primary-color !important;
+      }
+    }
+  }
+  &--BottomTotal {
+    font-size: 2rem;
+    padding: 10px 16px;
   }
 }

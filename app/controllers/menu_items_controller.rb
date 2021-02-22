@@ -7,7 +7,7 @@ class MenuItemsController < ApplicationController
       description: params[:description],
     )
     new_item.picture.attach(params[:picture])
-    if not new_item.save()
+    unless new_item.save()
       flash[:error] = new_item.errors.full_messages.join(", ")
     end
     redirect_to admin_home_path

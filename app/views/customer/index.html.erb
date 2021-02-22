@@ -5,7 +5,9 @@
   </div>
   <div class="CustomerCart">
     <p class="CustomerCart--Label">Cart : <%= User.find(1).cart_items_count %> </p>
-    <%= link_to "Checkout", customer_cart_path, class: "Button Button__primary" %>
+    <% unless User.find(1).cart_items_count==0 %>
+      <%= link_to "Checkout", customer_cart_path, class: "Button Button__primary" %>
+    <% end %>
   </div>
 </div>
 <div class="CustomerMenu">

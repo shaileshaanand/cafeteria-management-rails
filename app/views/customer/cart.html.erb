@@ -1,7 +1,20 @@
-<div>
-  <p></p>
-  <div>
-    <table>
+<div class="CartTable" >
+  <div class="CartTable--Header" >
+    <p class="CartTable--Title" >My Cart</p>
+    <p class="CartTable--Total">Total: <span class="CartTable--Total"> ₹<%= User.find(1).cart_total %> </span></p>
+  </div>
+  <div class="CartTable--TableContainer">
+    <table class="CartTable--Table" width="100%">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Image</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Modify</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
       <tbody>
         <% User.find(1).cart_items.each do |cart_item| %>
           <tr>
@@ -15,22 +28,32 @@
               <%= cart_item.amount %>
             </td>
             <td>
-              <%= cart_item.cost %>
+              ₹<%= cart_item.cost %>
             </td>
             <td>
-              <%= form_with url: "/cart_items/#{cart_item.id}", method: :patch do |form| %>
-                <input type="text" name="amount">
-                <input type="submit" value="change">
+              <div class="CartTable--FormContainer">
+                <%= form_with url: "/cart_items/#{cart_item.id}", method: :patch do |form| %>
+                  <input type="text" name="amount" placeholder="Quantity" autocomplete="off" >
+                  <input type="submit" value="Change" class="Button Button__primary ChangeButton" >
+                <% end %>
+              </div>
+            </td>
+            <td>
+              <%= form_with url:"/cart_items/#{cart_item.id}", method: :delete do |form| %>
+                <%= form.submit "Delete", class:"Button Button__primary" %>
               <% end %>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
-    <div>
+    <div class="CartTable--PlaceOrderForm">
+      <p class="CartTable--BottomTotal" >
+        ₹<%= User.find(1).cart_total %>
+      </p>
       <%= form_with url:"/orders", method: :post do |form| %>
         <%= form.hidden_field :user_id, value:1 %>
-        <%= form.submit "Place Order" %>
+        <%= form.submit "Place Order", class:"Button Button__secondary" %>
       <% end %>
     </div>
   </div>

@@ -5,7 +5,11 @@ class CustomerController < ApplicationController
   end
 
   def cart
-    render "cart"
+    if User.find(1).cart_items_count == 0
+      redirect_to "/customer"
+    else
+      render "cart"
+    end
   end
 
   def orders

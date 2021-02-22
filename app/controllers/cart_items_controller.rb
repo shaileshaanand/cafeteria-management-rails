@@ -20,10 +20,15 @@ class CartItemsController < ApplicationController
 
   def update
     cart_item = CartItem.find(params[:id])
-    if params[:amount].to_i >= 0
+    if params[:amount].to_i > 0
       cart_item.amount = params[:amount]
       cart_item.save!()
     end
+    redirect_to "/customer/cart"
+  end
+
+  def destroy
+    CartItem.find(params[:id]).destroy
     redirect_to "/customer/cart"
   end
 end
