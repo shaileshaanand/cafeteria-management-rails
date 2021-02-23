@@ -1,117 +1,123 @@
-<div>
-  <p>New Offline Order</p>
-  <div>
+<div class="ClerkNewOrder" >
+  <p class="ClerkNewOrder--Title" >New Offline Order</p>
+  <div class="ClerkNewOrder--FormContainer" >
     <%= form_with url: add_to_cart_path, method: :post do |form| %>
       <%= form.hidden_field :user_id,value: User.walk_in_customer.id %>
-      <select name="menu_item_id" id="menu_item_id">
+      <select name="menu_item_id" id="menu_item_id" class="ClerkNewOrder--Input" >
         <% Menu.active_menu.menu_items.each do |menu_item| %>
-          <option value=<%= menu_item.id %>><%= menu_item.name %></option>
+          <option value=<%= menu_item.id %>><%= menu_item.name %> @ ₹<%= menu_item.price %> </option>
         <% end %>
       </select>
-      <%= form.text_field "amount", placeholder: "Amount" %>
+      <%= form.text_field "amount",value: 1, placeholder: "Amount", class: "ClerkNewOrder--Input" %>
       <%= form.hidden_field "source", value: "clerk" %>
-      <%= form.submit :Add %>
+      <%= form.submit :Add, class: "Button Button__primary" %>
     <% end %>
   </div>
-  <div>
-    <p>Cart</p>
-    <table>
-      <tbody>
-        <% User.walk_in_customer.cart_items.each do |cart_item| %>
-          <tr>
-            <td>
-              <%= cart_item.menu_item.name %>
-            </td>
-            <td>
-              <%= cart_item.amount %>
-            </td>
-            <td>
-              <%= cart_item.cost %>
-            </td>
-            <td>
-              <div>
-                <%= form_with url:"/cart_items/#{cart_item.id}", method: :delete do |form| %>
-                  <%= form.hidden_field "source", value: "clerk" %>
-                  <%= form.submit "Delete", class:"Button Button__primary" %>
-                <% end %>
-              </div>
-            </td>
-          </tr>
+  <% if User.walk_in_customer.cart_items.length>0 %>
+    <div class="ClerkNewOrder--CartContainer" >
+      <p class="ClerkNewOrder--CartTitle" >Cart</p>
+      <table>
+        <tbody>
+          <% User.walk_in_customer.cart_items.each do |cart_item| %>
+            <tr>
+              <td>
+                <%= cart_item.menu_item.name %>
+              </td>
+              <td>
+                <%= cart_item.amount %>
+              </td>
+              <td>
+                ₹<%= cart_item.cost %>
+              </td>
+              <td>
+                <div>
+                  <%= form_with url:"/cart_items/#{cart_item.id}", method: :delete do |form| %>
+                    <%= form.hidden_field "source", value: "clerk" %>
+                    <%= form.submit "Delete", class:"Button Button__primary" %>
+                  <% end %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="ClerkNewOrder--Bottom" >
+        <p>Total: ₹<%= User.walk_in_customer.cart_total %></p>
+        <%= form_with url:"/orders", method: :post do |form| %>
+          <%= form.hidden_field :user_id, value:User.walk_in_customer.id %>
+          <%= form.hidden_field :source, value:"clerk" %>
+          <%= form.submit "Place Order", class:"ClerkNewOrder--Submit Button Button__secondary" %>
         <% end %>
-      </tbody>
-    </table>
-    <div>
-      <p>Total: ₹<%= User.walk_in_customer.cart_total %></p>
-      <%= form_with url:"/orders", method: :post do |form| %>
-        <%= form.hidden_field :user_id, value:User.walk_in_customer.id %>
-        <%= form.hidden_field :source, value:"clerk" %>
-        <%= form.submit "Place Order", class:"Button Button__secondary" %>
-      <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
-<div>
-  <p>Pending Orders</p>
-  <div>
-    <table>
-      <thead>
-        <tr>
-          <th>
-            Order ID
-          </th>
-          <th>
-            Time
-          </th>
-          <th>
-            Customer Name
-          </th>
-          <th>
-            Items
-          </th>
-          <th>
-            Amount
-          </th>
-          <th>
-            Deliver
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <% Order.pending.each do |order| %>
+<div class="PendingOrders" >
+  <p class="PendingOrders--Title" >Pending Orders</p>
+  <div class="PendingOrders--Container" >
+    <% if Order.pending.length>0 %>
+      <table>
+        <thead>
           <tr>
-            <td>
-              <%= order.id %>
-            </td>
-            <td>
-              <p><%= order.date.strftime("%I:%M %p") %></p>
-              <p><%= order.date.strftime("%d %b %Y") %></p>
-            </td>
-            <td>
-              <%= order.user.first_name %> <%= order.user.last_name %>
-            </td>
-            <td>
-              <ul>
-                <% order.order_items.each do |order_item| %>
-                  <li>
-                    <%= order_item.menu_item.name %> - <%= order_item.amount %>
-                  </li>
-                <% end %>
-              </ul>
-            </td>
-            <td>
-              ₹<%= order.amount %>
-            </td>
-            <td>
-              <div>
-                <%= form_with url: "/deliver_order", method: :post do |form| %>
-                  <%= form.hidden_field "order_id", value: order.id %>
-                  <%= form.submit "Mark as Delivered" %>
-                <% end %>
-              </div>
-            </td>
+            <th>
+              Order ID
+            </th>
+            <th>
+              Time
+            </th>
+            <th>
+              Customer Name
+            </th>
+            <th>
+              Items
+            </th>
+            <th>
+              Amount
+            </th>
+            <th>
+              Deliver
+            </th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% Order.pending.each do |order| %>
+            <tr>
+              <td>
+                <%= order.id %>
+              </td>
+              <td>
+                <p><%= order.date.strftime("%I:%M %p") %></p>
+                <p class="PendingOrders--Date" ><%= order.date.strftime("%d %b %Y") %></p>
+              </td>
+              <td>
+                <%= order.user.first_name %> <%= order.user.last_name %>
+              </td>
+              <td>
+                <ul>
+                  <% order.order_items.each do |order_item| %>
+                    <li>
+                      <%= order_item.menu_item.name %> - <%= order_item.amount %>
+                    </li>
+                  <% end %>
+                </ul>
+              </td>
+              <td>
+                ₹<%= order.amount %>
+              </td>
+              <td>
+                <div>
+                  <%= form_with url: "/deliver_order", method: :post do |form| %>
+                    <%= form.hidden_field "order_id", value: order.id %>
+                    <%= form.submit "Mark as Delivered", class: "Button Button__primary" %>
+                  <% end %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p class="PendingOrders--NoOrders" >No Pending Orders</p>
+    <% end %>
   </div>
 </div>
