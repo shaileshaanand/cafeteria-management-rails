@@ -14,6 +14,7 @@ class OrdersController < ApplicationController
           order_id: new_order.id,
           menu_item_id: cart_item.menu_item.id,
           amount: cart_item.amount,
+          cost: cart_item.menu_item.price,
         )
       }
       User.find(params[:user_id]).cart_items.delete_all

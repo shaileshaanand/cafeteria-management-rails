@@ -1,0 +1,42 @@
+@import "colors.scss";
+$radius: 7px;
+.OrderDetailTable {
+  margin-top: 30px;
+  &--Title {
+    background-color: $secondary-color;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: $text-color;
+    padding: 10px 25px;
+    border-radius: $radius $radius 0 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  &--TableContainer {
+    background-color: $bg-color;
+    color: $text-color;
+    padding: 17px;
+    border-radius: 0 0 7px 7px;
+    table {
+      width: 100%;
+      th,
+      td {
+        font-size: 2rem;
+        color: $text-color;
+        padding: 10px;
+        border: 2px solid $text-color;
+        text-align: center;
+      }
+    }
+  }
+  &--Details {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 13px;
+    padding-left: 10px;
+    padding-right: 10px;
+    p {
+      font-size: 2rem;
+    }
+  }
+}

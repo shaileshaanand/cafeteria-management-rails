@@ -14,7 +14,6 @@ $radius: 7px;
   &--Table {
     border-collapse: collapse;
     border-spacing: 0;
-    // border: 1px solid red;
   }
   &--TableContainer {
     padding: 17px;
@@ -25,6 +24,13 @@ $radius: 7px;
       color: $text-color;
       padding: 10px;
       border: 2px solid $text-color;
+      a {
+        color: $light-bg-color;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          color: $primary-color;
+        }
+      }
     }
   }
   &--Cell {

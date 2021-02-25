@@ -1,19 +1,25 @@
-<div>
-  <p>
-    Order #<%= @order.id %>
-  </p>
-  <div>
+<div class="OrderDetailTable" >
+  <div class="OrderDetailTable--Title" >
     <p>
-      <%= @order.user.first_name %> <%= @order.user.last_name %>
+      Order #<%= @order.id %>
     </p>
     <p>
-      <%= @order.amount %>
-    </p>
-    <p>
-      <%= @order.status %>
+      Total ₹<%= @order.amount %>
     </p>
   </div>
-  <div>
+  <div class="OrderDetailTable--TableContainer" >
+    <div class="OrderDetailTable--Details" >
+      <p>
+        By: <%= @order.user.first_name %> <%= @order.user.last_name %>
+      </p>
+      <p>
+        <% if @order.status %>
+          Delivered
+        <% else %>
+          Pending
+        <% end %>
+      </p>
+    </div>
     <table>
       <tbody>
         <% @order.order_items.each do |order_item| %>
@@ -22,13 +28,10 @@
               <%= order_item.menu_item.name %>
             </td>
             <td>
-              <%= order_item.amount %>
+              ₹<%= order_item.cost %> X <%= order_item.amount %>
             </td>
             <td>
-              Cost (multiplied)
-            </td>
-            <td>
-              <%# <%= order_item. %>
+              ₹<%= order_item.total %>
             </td>
           </tr>
         <% end %>

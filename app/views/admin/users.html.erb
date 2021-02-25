@@ -21,13 +21,16 @@
 </div>
 <%= render partial: "admin/user_table",locals: {
   users:User.clerks,
-  heading: "Clerks"
+  heading: "Clerks",
+  link_email: false,
 } %>
 <%= render partial: "admin/user_table",locals: {
   users:User.owners,
-  heading: "Owners"
+  heading: "Owners",
+  link_email: false,
 } %>
 <%= render partial: "admin/user_table",locals: {
   users:User.customers,
-  heading: "Customers"
+  heading: "Customers",
+  link_email: true,
 } %>

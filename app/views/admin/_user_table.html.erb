@@ -22,7 +22,11 @@
               <%= user.last_name %>
             </td>
             <td align="center">
-              <%= user.email %>
+              <% if link_email %>
+                <a href="/admin/report_by_user?email=<%= user.email %>"> <%= user.email %></a>
+              <% else %>
+                <%= user.email %>
+              <% end %>
             </td>
             <td align="center">
               <%= form_with url: "/users/#{user.id}", method: :delete do |form| %>

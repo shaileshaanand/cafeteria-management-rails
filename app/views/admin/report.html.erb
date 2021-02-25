@@ -1,28 +1,48 @@
-<div>
-  <div>
+<div class="ReportTable" >
+  <div class="ReportTable--Title">
     <p>
       <%= @heading %>
     </p>
     <p>
-      <%= @total %>
+      Total ₹<%= @total %>
     </p>
   </div>
-  <div>
+  <div class="ReportTable--TableContainer">
     <table>
+      <thead>
+        <tr>
+          <th>
+            Order ID
+          </th>
+          <th>
+            Date
+          </th>
+          <th>
+            Amount
+          </th>
+          <th>
+            Delivered
+          </th>
+        </tr>
+      </thead>
       <tbody>
         <% @orders.each do |order| %>
           <tr>
             <td>
-              <%= order.id %>
+              <a href="/orders/<%= order.id %>">Order #<%= order.id %></a>
             </td>
             <td>
-              <%= order.date %>
+              <%= order.date.strftime("%d %b %Y") %>
             </td>
             <td>
-              <%= order.amount%>
+              ₹<%= order.amount%>
             </td>
             <td>
-              <%= order.status %>
+              <% if order.status %>
+                Delivered
+              <% else %>
+                Pending
+              <% end %>
             </td>
           </tr>
         <% end %>
