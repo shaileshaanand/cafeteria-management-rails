@@ -1,0 +1,32 @@
+<div>
+  <div>
+    <p>
+      <%= @heading %>
+    </p>
+    <p>
+      <%= @total %>
+    </p>
+  </div>
+  <div>
+    <table>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td>
+              <%= order.id %>
+            </td>
+            <td>
+              <%= order.date %>
+            </td>
+            <td>
+              <%= order.amount%>
+            </td>
+            <td>
+              <%= order.status %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

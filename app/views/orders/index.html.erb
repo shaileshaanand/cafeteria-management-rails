@@ -1,0 +1,38 @@
+<div>
+  <p>
+    Order #<%= @order.id %>
+  </p>
+  <div>
+    <p>
+      <%= @order.user.first_name %> <%= @order.user.last_name %>
+    </p>
+    <p>
+      <%= @order.amount %>
+    </p>
+    <p>
+      <%= @order.status %>
+    </p>
+  </div>
+  <div>
+    <table>
+      <tbody>
+        <% @order.order_items.each do |order_item| %>
+          <tr>
+            <td>
+              <%= order_item.menu_item.name %>
+            </td>
+            <td>
+              <%= order_item.amount %>
+            </td>
+            <td>
+              Cost (multiplied)
+            </td>
+            <td>
+              <%# <%= order_item. %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

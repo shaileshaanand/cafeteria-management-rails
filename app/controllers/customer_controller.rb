@@ -1,6 +1,6 @@
 class CustomerController < ApplicationController
   def index
-    @active_menu = Menu.active_menu
+    @active_menus = Menu.active_menus.order(name: :ASC)
     render "index"
   end
 
@@ -14,5 +14,9 @@ class CustomerController < ApplicationController
 
   def orders
     render "orders"
+  end
+
+  def reports
+    render "reports"
   end
 end

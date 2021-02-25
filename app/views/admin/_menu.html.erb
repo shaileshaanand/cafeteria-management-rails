@@ -2,10 +2,15 @@
   <div class="AdminMenu--Title">
     <div class="AdminMenu--Name">
       <%= menu.name %>
-      <% if not menu.active? %>
-        <%= form_with url: set_active_menu_path, method: :post do |form| %>
-          <%=  form.hidden_field :menu_id, value: menu.id %>
+      <% unless menu.active %>
+        <%= form_with url: "/menus/#{menu.id}", method: :patch do |form| %>
+          <%=  form.hidden_field :active, value: true %>
           <%= form.submit :Activate, class:"Button Button__primary" %>
+        <% end %>
+      <% else %>
+        <%= form_with url: "/menus/#{menu.id}", method: :patch do |form| %>
+          <%=  form.hidden_field :active, value: false %>
+          <%= form.submit :Deactivate, class:"Button Button__primary" %>
         <% end %>
       <% end %>
     </div>

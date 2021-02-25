@@ -1,11 +1,7 @@
 class Menu < ApplicationRecord
-  has_many :menu_items, dependent: :delete_all
+  has_many :menu_items
 
-  def active?
-    id == Config.active_menu_id
-  end
-
-  def self.active_menu
-    all.find(Config.active_menu_id)
+  def self.active_menus
+    all.where(active: true)
   end
 end

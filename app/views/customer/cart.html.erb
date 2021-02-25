@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <% User.find(1).cart_items.each do |cart_item| %>
+        <% User.find(1).cart_items.order(id: :ASC).each do |cart_item| %>
           <tr>
             <td>
               <%= cart_item.menu_item.name %>

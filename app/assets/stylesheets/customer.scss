@@ -241,4 +241,11 @@ $radius: 7px;
     text-align: center;
     color: $text-color;
   }
+  &--OrderId {
+    color: $light-bg-color;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      color: $primary-color;
+    }
+  }
 }

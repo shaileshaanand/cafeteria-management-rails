@@ -31,4 +31,9 @@ class OrdersController < ApplicationController
     Order.find(params[:order_id]).update({ :status => true })
     redirect_to "/clerk"
   end
+
+  def show
+    @order = Order.find(params[:id])
+    render "index"
+  end
 end

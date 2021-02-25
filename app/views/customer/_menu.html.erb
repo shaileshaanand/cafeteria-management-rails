@@ -1,0 +1,35 @@
+<div class="CustomerMenu">
+  <p class="CustomerMenu--Header"><%= menu.name %></p>
+  <div class="CustomerMenu--TableContainer">
+    <table class="CustomerMenu--Table" width="100%">
+      <tbody>
+        <% menu.menu_items.each do |menu_item| %>
+          <tr>
+            <td><%= menu_item.name %> </td>
+            <td class="CustomerMenu--Price"><%= menu_item.price %> </td>
+            <td>
+              <%= image_tag(cloudinary_url(menu_item.picture.key, options = {width:230, height: 153,crop: :fill})) %>
+            </td>
+            <td><%= menu_item.description %> </td>
+            <td>
+              <div class="AddToCart">
+                <%= form_with url: add_to_cart_path, method: :post do |form| %>
+                  <%= form.hidden_field :user_id, value: "1" %>
+                  <div class="AddToCart--Container">
+                    <div class="AddToCart--Upper">
+                      <button type="button" class="AddToCart--Minus" onclick="decrease(<%=menu_item.id%>)">-</button>
+                      <input name ="amount" id="cart_<%=menu_item.id%>" class="AddToCart--Number" readonly autocomplete="off" value="1">
+                      <button type="button" class="AddToCart--Plus" onclick="increase(<%=menu_item.id%>)">+</button>
+                    </div>
+                    <%= form.hidden_field :menu_item_id, value: menu_item.id %>
+                    <%= form.submit :Add, class:"AddToCart--Button" %>
+                  </div>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

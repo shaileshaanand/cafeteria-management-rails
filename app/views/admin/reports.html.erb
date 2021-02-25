@@ -1,0 +1,32 @@
+<h1>
+  Reports
+</h1>
+<div>
+  <p>
+    By Date
+  </p>
+  <div>
+    <%= form_with url: "/admin/report_by_date", method: :get do |form| %>
+      <div>
+        <%= form.label :start_date %>
+        <%= form.date_field :start_date %>
+      </div>
+      <div>
+        <%= form.label :end_date %>
+        <%= form.date_field :end_date %>
+      </div>
+      <%= form.submit :Generate, class: "Button Button__primary" %>
+    <% end %>
+  </div>
+</div>
+<div>
+  <p>
+    By User
+  </p>
+  <div>
+    <%= form_with url: "/admin/report_by_user", method: :get do |form| %>
+      <%= form.email_field :email, placeholder: "Email" %>
+      <%= form.submit :Generate, class: "Button Button__primary" %>
+    <% end %>
+  </div>
+</div>

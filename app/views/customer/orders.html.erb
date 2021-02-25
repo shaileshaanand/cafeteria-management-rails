@@ -20,7 +20,7 @@
         <% User.find(1).orders.each do |order| %>
           <tr>
             <td>
-              <%= order.id %>
+              <a class="OrdersTable--OrderId" href="/orders/<%= order.id %>">Order #<%= order.id %></a>
             </td>
             <td>
               <%= order.date.strftime("%d %b %Y") %>

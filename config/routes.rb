@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get "/admin" => "admin#index", as: :admin_home
   get "/admin/users" => "admin#users", as: :admin_users
+  get "/admin/reports" => "admin#reports", as: :admin_reports
+  get "/admin/report_by_date" => "admin#report_by_date", as: :admin_report_by_date
+  get "/admin/report_by_user" => "admin#report_by_user", as: :admin_report_by_user
   get "/customer" => "customer#index", as: :customer_home
   get "/customer/cart" => "customer#cart", as: :customer_cart
   get "/customer/orders" => "customer#orders", as: :customer_orders

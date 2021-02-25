@@ -6,4 +6,8 @@ class Order < ApplicationRecord
   def self.pending
     all.where(status: false)
   end
+
+  def self.between(start_date, end_date)
+    all.where(:date => start_date..end_date)
+  end
 end
