@@ -83,7 +83,7 @@
           <% Order.pending.each do |order| %>
             <tr>
               <td>
-                <%= order.id %>
+                Order #<%= order.id %>
               </td>
               <td>
                 <p><%= order.date.strftime("%I:%M %p") %></p>
