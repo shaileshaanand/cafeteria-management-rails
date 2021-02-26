@@ -6,7 +6,7 @@
         <% menu.menu_items.each do |menu_item| %>
           <tr>
             <td><%= menu_item.name %> </td>
-            <td class="CustomerMenu--Price"><%= menu_item.price %> </td>
+            <td class="CustomerMenu--Price">₹<%= menu_item.price %> </td>
             <td>
               <%= image_tag(cloudinary_url(menu_item.picture.key, options = {width:230, height: 153,crop: :fill})) %>
             </td>
