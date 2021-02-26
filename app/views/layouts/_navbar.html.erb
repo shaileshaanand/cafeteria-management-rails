@@ -1,18 +1,31 @@
 <nav class="Navbar">
-  <h1 class="Navbar--Branding">Pupilfirst Cafe</h1>
+  <h1 class="Navbar--Branding"> <a href="/">Pupilfirst Cafe</a></h1>
   <div class="Navbar--Center">
     <ul class="Navbar--Menu">
-      <li class="Navbar--MenuItem"> <%= link_to "Home", admin_home_path %> </li>
-      <li class="Navbar--MenuItem"><a href="/admin/reports">Reports</a></li>
-      <li class="Navbar--MenuItem"> <%= link_to "Users", admin_users_path %> </li>
+      <% if @current_user %>
+        <% if @current_user.admin? %>
+          <li class="Navbar--MenuItem"> <%= link_to "Home", admin_home_path %> </li>
+          <li class="Navbar--MenuItem"><a href="/admin/reports">Reports</a></li>
+          <li class="Navbar--MenuItem"> <%= link_to "Users", admin_users_path %> </li>
+        <% elsif @current_user.clerk? %>
+          <li class="Navbar--MenuItem"> <%= link_to "Home", clerk_home_path %> </li>
+        <% elsif @current_user.customer? %>
+          <li class="Navbar--MenuItem"> <%= link_to "Home", customer_home_path %> </li>
+          <li class="Navbar--MenuItem"> <%= link_to "Orders", customer_orders_path %> </li>
+        <% end %>
+      <% end %>
     </ul>
   </div>
   <div class="Navbar--Right">
     <ul class="Navbar--Menu">
-      <li class="Navbar--MenuItem Navbar--MenuItem__Username">Hi Shailesh</li>
-      <li>
-        <%= form_with url: destroy_session_path, method: :delete do |form| %>
-          <%= form.button :Logout, class:"Button Button__primary" %>
+      <li class="Navbar--MenuItem Navbar--MenuItem__Username">
+        <% if @current_user %>
+          Hi <%= @current_user.first_name %>
+        </li>
+        <li>
+          <%= form_with url: destroy_session_path, method: :delete do |form| %>
+            <%= form.button :Logout, class:"Button Button__primary" %>
+          <% end %>
         <% end %>
       </li>
     </ul>

@@ -5,6 +5,19 @@ class User < ApplicationRecord
   has_secure_password
   has_many :orders
   has_many :cart_items
+
+  def admin?
+    role == "admin"
+  end
+
+  def clerk?
+    role == "clerk"
+  end
+
+  def customer?
+    role == "customer"
+  end
+
   def self.customers
     User.where(role: "customer")
   end
