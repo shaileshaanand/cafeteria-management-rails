@@ -1,0 +1,26 @@
+@import "colors.scss";
+$radius: 7px;
+@keyframes slidein {
+  30% {
+    right: 10px;
+  }
+  80% {
+    right: 10px;
+  }
+  100% {
+    right: -300px;
+  }
+}
+#FlashMessage {
+  position: absolute;
+  top: 100px;
+  right: -300px;
+  min-width: 100px;
+  color: $text-color;
+  background-color: $primary-color;
+  font-weight: 600;
+  padding: 20px;
+  font-size: 1.5rem;
+  border-radius: $radius;
+  animation: slidein 4s forwards;
+}

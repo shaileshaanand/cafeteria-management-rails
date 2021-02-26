@@ -11,7 +11,7 @@
   <body>
     <%= render "layouts/navbar" %>
     <% if flash[:error] %>
-      <p><%= flash[:error] %> </p>
+      <div id="FlashMessage" ><%= flash[:error] %> </div>
     <% end %>
     <main class="MainContent">
       <%= yield %>
