@@ -6,7 +6,7 @@ class CartItemsController < ApplicationController
     if params[:user_id].to_i == User.walk_in_customer.id
       ensure_clerk_logged_in
     else
-      if params[:user_id] != current_user.id
+      if params[:user_id].to_i != current_user.id
         redirect_to "/"
         return
       end
@@ -35,7 +35,7 @@ class CartItemsController < ApplicationController
   end
 
   def get_cart_item(id)
-    cart_item = CartItem.where(user_id: User.walk_in_customer.id).find(params[:id])
+    cart_item = CartItem.find(params[:id])
     if cart_item.user_id == User.walk_in_customer.id
       ensure_clerk_logged_in
     else
