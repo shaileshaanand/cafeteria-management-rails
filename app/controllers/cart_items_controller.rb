@@ -1,8 +1,17 @@
 class CartItemsController < ApplicationController
   skip_before_action :ensure_admin_logged_in
-  before_action :ensure_customer_logged_in
+  before_action :ensure_customer_or_clerk_logged_in
 
   def add
+    if params[:user_id].to_i == User.walk_in_customer.id
+      ensure_clerk_logged_in
+    else
+      if params[:user_id] != current_user.id
+        redirect_to "/"
+        return
+      end
+    end
+
     if CartItem.exists?(user_id: params[:user_id], menu_item_id: params[:menu_item_id])
       puts "found"
       cart_item = CartItem.find_by(user_id: params[:user_id], menu_item_id: params[:menu_item_id])
@@ -25,8 +34,18 @@ class CartItemsController < ApplicationController
     end
   end
 
+  def get_cart_item(id)
+    cart_item = CartItem.where(user_id: User.walk_in_customer.id).find(params[:id])
+    if cart_item.user_id == User.walk_in_customer.id
+      ensure_clerk_logged_in
+    else
+      cart_item = current_user.cart_items.find(params[:id])
+    end
+    cart_item
+  end
+
   def update
-    cart_item = CartItem.find(params[:id])
+    cart_item = get_cart_item(params[:id])
     if params[:amount].to_i > 0
       cart_item.amount = params[:amount]
       cart_item.save!()
@@ -35,7 +54,8 @@ class CartItemsController < ApplicationController
   end
 
   def destroy
-    CartItem.find(params[:id]).destroy
+    cart_item = get_cart_item(params[:id])
+    cart_item.destroy
     if params[:source] == "clerk"
       redirect_to "/clerk"
     else

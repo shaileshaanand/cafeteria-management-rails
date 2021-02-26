@@ -1,9 +1,13 @@
 class OrdersController < ApplicationController
   skip_before_action :ensure_admin_logged_in
-  before_action :ensure_customer_logged_in, only: [:create]
+  before_action :ensure_customer_or_clerk_logged_in, only: [:create]
   before_action :ensure_any_logged_in, only: [:show]
 
   def create
+    if params[:user_id].to_i == User.walk_in_customer.id
+      puts "CLERKKKK"
+      ensure_clerk_logged_in
+    end
     new_order = Order.new(
       user_id: params[:user_id],
       date: DateTime.now,
@@ -36,7 +40,11 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
+    if @current_user.admin?
+      @order = Order.find(params[:id])
+    else
+      @order = @current_user.orders.find(params[:id])
+    end
     render "index"
   end
 end
