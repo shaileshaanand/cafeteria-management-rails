@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    if current_user && current_user.role == "admin"
+    if current_user && current_user.admin?
       if ["Customer", "Admin", "Clerk"].include?(params[:role])
         role_lower = params[:role].downcase
       else

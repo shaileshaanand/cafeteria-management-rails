@@ -3,11 +3,11 @@ class SessionsController < ApplicationController
 
   def new
     if current_user
-      if current_user.role == "admin"
+      if current_user.admin?
         redirect_to admin_home_path
-      elsif current_user.role == "customer"
+      elsif current_user.customer?
         redirect_to customer_home_path
-      elsif current_user.role == "clerk"
+      elsif current_user.clerk?
         redirect_to clerk_home_path
       end
     else

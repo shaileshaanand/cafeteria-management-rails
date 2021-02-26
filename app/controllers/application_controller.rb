@@ -2,25 +2,25 @@ class ApplicationController < ActionController::Base
   before_action :ensure_admin_logged_in
 
   def ensure_admin_logged_in
-    unless current_user && current_user.role == "admin"
+    unless current_user && current_user.admin?
       redirect_to new_session_path
     end
   end
 
   def ensure_clerk_logged_in
-    unless current_user && current_user.role == "clerk"
+    unless current_user && current_user.clerk?
       redirect_to new_session_path
     end
   end
 
   def ensure_customer_logged_in
-    unless current_user && current_user.role == "customer"
+    unless current_user && current_user.clerk?
       redirect_to new_session_path
     end
   end
 
   def ensure_customer_or_clerk_logged_in
-    unless current_user && current_user.role == "customer"
+    unless current_user && current_user.customer?
       redirect_to new_session_path
     end
   end
