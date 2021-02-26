@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get "/cart" => "customer#cart", as: :customer_cart
   get "/orders" => "customer#orders", as: :customer_orders
   get "/clerk" => "clerk#index", as: :clerk_home
-  post "/set_active_menu" => "configs#set_active_menu", as: :set_active_menu
+  # post "/set_active_menu" => "configs#set_active_menu", as: :set_active_menu
   post "/add_to_cart" => "cart_items#add", as: :add_to_cart
   post "/deliver_order" => "orders#deliver", as: :deliver_order
   resources :users
