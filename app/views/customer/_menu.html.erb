@@ -14,7 +14,7 @@
             <td>
               <div class="AddToCart">
                 <%= form_with url: add_to_cart_path, method: :post do |form| %>
-                  <%= form.hidden_field :user_id, value: "1" %>
+                  <%= form.hidden_field :user_id, value: @current_user.id %>
                   <div class="AddToCart--Container">
                     <div class="AddToCart--Upper">
                       <button type="button" class="AddToCart--Minus" onclick="decrease(<%=menu_item.id%>)">-</button>

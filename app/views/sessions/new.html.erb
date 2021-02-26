@@ -1,0 +1,12 @@
+<div>
+  <p>
+    Login
+  </p>
+  <div>
+    <%= form_with url: sessions_path, method: :post do |form|%>
+      <%= form.email_field :email, placeholder: "Email" %>
+      <%= form.password_field :password, placeholder: "Password" %>
+      <%= form.button :Login, class:"Button Button__primary" %>
+    <% end %>
+  </div>
+</div>

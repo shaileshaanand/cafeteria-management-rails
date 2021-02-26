@@ -1,7 +1,7 @@
 <div class="CartTable" >
   <div class="CartTable--Header" >
     <p class="CartTable--Title" >My Cart</p>
-    <p class="CartTable--Total">Total: <span class="CartTable--Total"> ₹<%= User.find(1).cart_total %> </span></p>
+    <p class="CartTable--Total">Total: <span class="CartTable--Total"> ₹<%= @current_user.cart_total %> </span></p>
   </div>
   <div class="CartTable--TableContainer">
     <table class="CartTable--Table" width="100%">
@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <% User.find(1).cart_items.order(id: :ASC).each do |cart_item| %>
+        <% @current_user.cart_items.order(id: :ASC).each do |cart_item| %>
           <tr>
             <td>
               <%= cart_item.menu_item.name %>
@@ -49,10 +49,10 @@
     </table>
     <div class="CartTable--PlaceOrderForm">
       <p class="CartTable--BottomTotal" >
-        ₹<%= User.find(1).cart_total %>
+        ₹<%= @current_user.cart_total %>
       </p>
       <%= form_with url:"/orders", method: :post do |form| %>
-        <%= form.hidden_field :user_id, value:1 %>
+        <%= form.hidden_field :user_id, value:@current_user.id %>
         <%= form.submit "Place Order", class:"Button Button__secondary" %>
       <% end %>
     </div>

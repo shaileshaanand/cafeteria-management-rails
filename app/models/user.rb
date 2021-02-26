@@ -12,7 +12,7 @@ class User < ApplicationRecord
     User.where(role: "clerk")
   end
   def self.owners
-    User.where(role: "owner")
+    User.where(role: "admin")
   end
 
   def cart_items_count

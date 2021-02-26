@@ -17,7 +17,7 @@
         </th>
       </thead>
       <tbody>
-        <% User.find(1).orders.each do |order| %>
+        <% @current_user.orders.each do |order| %>
           <tr>
             <td>
               <a class="OrdersTable--OrderId" href="/orders/<%= order.id %>">Order #<%= order.id %></a>

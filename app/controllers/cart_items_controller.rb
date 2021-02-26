@@ -1,4 +1,7 @@
 class CartItemsController < ApplicationController
+  skip_before_action :ensure_admin_logged_in
+  before_action :ensure_customer_logged_in
+
   def add
     if CartItem.exists?(user_id: params[:user_id], menu_item_id: params[:menu_item_id])
       puts "found"

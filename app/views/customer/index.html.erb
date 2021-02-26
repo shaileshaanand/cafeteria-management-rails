@@ -2,8 +2,8 @@
   <div class="CustomerActiveMenu">
   </div>
   <div class="CustomerCart">
-    <p class="CustomerCart--Label">Cart : <%= User.find(1).cart_items_count %> </p>
-    <% unless User.find(1).cart_items_count==0 %>
+    <p class="CustomerCart--Label">Cart : <%= @current_user.cart_items_count %> </p>
+    <% unless @current_user.cart_items_count==0 %>
       <%= link_to "Checkout", customer_cart_path, class: "Button Button__primary" %>
     <% end %>
   </div>

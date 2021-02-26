@@ -1,6 +1,7 @@
 <div class="AddUserForm">
   <h3 class="AddUserForm--Title">Add User</h3>
   <%= form_with url: "/users", method: :post, class: "AddUserForm--Form" do |form| %>
+    <%= form.hidden_field :source, value: "admin" %>
     <div class="AddUserForm--Name">
       <%= form.text_field :first_name, placeholder: "First Name", class:"AddUserForm--Input" %>
       <%= form.text_field :last_name, placeholder: "Last Name", class:"AddUserForm--Input" %>

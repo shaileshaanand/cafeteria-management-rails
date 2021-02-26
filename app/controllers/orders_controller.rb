@@ -1,6 +1,8 @@
-# require "date"
-
 class OrdersController < ApplicationController
+  skip_before_action :ensure_admin_logged_in
+  before_action :ensure_customer_logged_in, only: [:create]
+  before_action :ensure_any_logged_in, only: [:show]
+
   def create
     new_order = Order.new(
       user_id: params[:user_id],

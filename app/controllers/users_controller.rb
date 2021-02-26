@@ -1,9 +1,19 @@
 class UsersController < ApplicationController
+  skip_before_action :ensure_admin_logged_in, only: [:new, :create]
+
+  def new
+    render "signup"
+  end
+
   def create
-    if ["Customer", "Admin", "Clerk"].include?(params[:role])
-      role_lower = params[:role].downcase
+    if current_user && current_user.role == "admin"
+      if ["Customer", "Admin", "Clerk"].include?(params[:role])
+        role_lower = params[:role].downcase
+      else
+        redirect_to admin_users_path
+      end
     else
-      redirect_to admin_users_path
+      role_lower = "customer"
     end
     new_user = User.new(
       first_name: params[:first_name],
@@ -15,7 +25,11 @@ class UsersController < ApplicationController
     if not new_user.save()
       flash[:error] = new_user.errors.full_messages.join(", ")
     end
-    redirect_to admin_users_path
+    if params[:source] == "admin"
+      redirect_to admin_users_path
+    else
+      redirect_to customer_home_path
+    end
   end
 
   def destroy

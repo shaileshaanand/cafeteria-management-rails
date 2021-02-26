@@ -10,7 +10,11 @@
   <div class="Navbar--Right">
     <ul class="Navbar--Menu">
       <li class="Navbar--MenuItem Navbar--MenuItem__Username">Hi Shailesh</li>
-      <li><a href="#" class="Button Button__primary">Logout</a></li>
+      <li>
+        <%= form_with url: destroy_session_path, method: :delete do |form| %>
+          <%= form.button :Logout, class:"Button Button__primary" %>
+        <% end %>
+      </li>
     </ul>
   </div>
 </nav>

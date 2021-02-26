@@ -15,3 +15,10 @@ walk_in_customer = User.create!(
 )
 
 Config.set_walk_in_customer(walk_in_customer.id)
+
+owner = User.create!(
+  first_name: "Owner",
+  password: "owner1234",
+  email: "owner@pupilfirst.com",
+  role: "admin",
+)
