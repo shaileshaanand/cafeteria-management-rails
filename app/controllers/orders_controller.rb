@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
     if params[:source] == "clerk"
       redirect_to "/clerk"
     else
-      redirect_to "/customer/orders"
+      redirect_to "/orders"
     end
   end
 

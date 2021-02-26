@@ -18,7 +18,7 @@ class CartItemsController < ApplicationController
     if params[:source] == "clerk"
       redirect_to "/clerk"
     else
-      redirect_to "/customer"
+      redirect_to "/"
     end
   end
 
@@ -28,7 +28,7 @@ class CartItemsController < ApplicationController
       cart_item.amount = params[:amount]
       cart_item.save!()
     end
-    redirect_to "/customer/cart"
+    redirect_to "/cart"
   end
 
   def destroy
@@ -36,7 +36,7 @@ class CartItemsController < ApplicationController
     if params[:source] == "clerk"
       redirect_to "/clerk"
     else
-      redirect_to "/customer/cart"
+      redirect_to "/cart"
     end
   end
 end

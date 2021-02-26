@@ -6,7 +6,7 @@ class CustomerController < ApplicationController
 
   def cart
     if User.find(1).cart_items_count == 0
-      redirect_to "/customer"
+      redirect_to "/"
     else
       render "cart"
     end
