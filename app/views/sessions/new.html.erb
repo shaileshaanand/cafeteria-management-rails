@@ -1,12 +1,14 @@
-<div>
-  <p>
+<h1 class="LoginTitle" >Welcome to Pupilfirst Café</h1>
+<div class="Login" >
+  <p class="Login--Title" >
     Login
   </p>
-  <div>
-    <%= form_with url: sessions_path, method: :post do |form|%>
-      <%= form.email_field :email, placeholder: "Email" %>
-      <%= form.password_field :password, placeholder: "Password" %>
+  <div class="Login--FormContainer" >
+    <%= form_with url: sessions_path, method: :post, class:"Login--Form" do |form|%>
+      <%= form.email_field :email, placeholder: "Email", class:"Login--FormInput" %>
+      <%= form.password_field :password, placeholder: "Password", class:"Login--FormInput" %>
       <%= form.button :Login, class:"Button Button__primary" %>
     <% end %>
+    <p class="Login--Subtext" >Don't have an account? <%= link_to "Register Here", new_user_path %></p>
   </div>
 </div>

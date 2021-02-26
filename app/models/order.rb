@@ -8,6 +8,7 @@ class Order < ApplicationRecord
   end
 
   def self.between(start_date, end_date)
+    end_date = end_date.to_datetime + 1
     all.where(:date => start_date..end_date)
   end
 end

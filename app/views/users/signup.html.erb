@@ -1,12 +1,14 @@
-<div>
-  <h1>Signup</h1>
-  <div>
-    <%= form_with url: users_path, method: :post do |form|%>
-      <%= form.text_field :first_name, placeholder: "First Name" %>
-      <%= form.text_field :last_name, placeholder: "Last Name" %>
-      <%= form.email_field :email, placeholder: "Email" %>
-      <%= form.password_field :password, placeholder: "Password" %>
+<h1 class="RegisterTitle" >Welcome to Pupilfirst Café</h1>
+<div class="Register" >
+  <h1 class="Register--Title" >Signup</h1>
+  <div class="Register--FormContainer" >
+    <%= form_with url: users_path, method: :post, class:"Register--Form" do |form|%>
+      <%= form.text_field :first_name, placeholder: "First Name", class:"Register--FormInput" %>
+      <%= form.text_field :last_name, placeholder: "Last Name", class:"Register--FormInput" %>
+      <%= form.email_field :email, placeholder: "Email", class:"Register--FormInput" %>
+      <%= form.password_field :password, placeholder: "Password", class:"Register--FormInput" %>
       <%= form.button "Sign Up", class:"Button Button__primary" %>
     <% end %>
+    <p class="Register--Subtext" >Already have an account? <%= link_to "Login Here", sessions_path %></p>
   </div>
   <div></div>

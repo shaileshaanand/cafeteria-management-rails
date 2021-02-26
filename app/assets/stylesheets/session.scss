@@ -1,0 +1,68 @@
+@import "colors.scss";
+$radius: 7px;
+.LoginTitle,
+.RegisterTitle {
+  font-size: 3.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 30px;
+}
+.Login,
+.Register {
+  width: 400px;
+  margin-top: 30px;
+  margin: 30px auto;
+  &--Title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    width: 100%;
+    padding: 10px 25px;
+    color: $text-color;
+    background-color: $secondary-color;
+    border-radius: $radius $radius 0 0;
+  }
+  &--FormContainer {
+    background-color: $bg-color;
+    padding: 17px;
+    border-radius: 0 0 $radius $radius;
+  }
+  &--Form {
+    display: flex;
+    flex-direction: column;
+    button.Button__primary {
+      margin: 7px;
+      margin-bottom: 4px;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        background-color: $secondary-color !important;
+      }
+    }
+  }
+  &--FormInput {
+    margin: 7px;
+    background-color: #252323;
+    color: #f9f9f9;
+    padding: 10px;
+    font-size: 2rem;
+    border-radius: $radius;
+    outline: 0;
+    border: 2px solid #f9f9f9;
+    &:focus {
+      border: 2px solid $secondary-color;
+    }
+  }
+  &--Subtext {
+    color: $text-color;
+    text-align: center;
+    font-size: 1.5rem;
+    padding-top: 7px;
+    font-weight: 600;
+    a {
+      color: $light-bg-color;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+}
