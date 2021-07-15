@@ -1,24 +1,26 @@
-# README
+# Cafeteria Management
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## A Food Ordering & Hotel Management web app
+![Screenshot from 2021-07-15 11-58-17cafe](https://user-images.githubusercontent.com/26682202/125739651-09781b5c-029c-470f-b250-2bbd9af8beb9.png)
 
-Things you may want to cover:
+Deployed at https://saas-201-cafe-mgmt-shailesh.herokuapp.com/
 
-* Ruby version
+## Credentials For [Deployment](https://saas-201-cafe-mgmt-shailesh.herokuapp.com/):
 
-* System dependencies
+### Customer Account:
 
-* Configuration
+Email: `ravi@test.com`
 
-* Database creation
+Password: `ravi`
 
-* Database initialization
+### Owner Account:
 
-* How to run the test suite
+Email: `owner@pupilfirst.com`
 
-* Services (job queues, cache servers, search engines, etc.)
+Password: `owner1234`
 
-* Deployment instructions
+### Clerk Account:
 
-* ...
+Email: `clerk@pupilfirst.com`
+
+Password: `clerk1234`
